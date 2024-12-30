@@ -1,0 +1,82 @@
+esphome:
+  name: irrigation-controller
+  platform: ESP32
+  board: esp32-c3-devkitm-1
+
+# Enable logging
+logger:
+
+# Enable Home Assistant API
+api:
+  encryption:
+    key: "CXBHT8tOZt3Y7fGbe8pLx8k3tyN8ID63/piFv7Updu0="
+
+# WiFi settings
+wifi:
+ ap:
+   ssid: "Irrigation Controller"
+   password: "irrigation"
+ fast_connect: false
+
+# Enable web server for status page
+web_server:
+  port: 80
+
+# Enable captive portal for easy setup
+captive_portal:
+
+# Define all switches
+switch:
+  - platform: gpio
+    pin: 5
+    id: irrigation_1
+    name: "Irrigation 1"
+    icon: "mdi:watering-can"
+    interlock: &interlock_group [irrigation_1, irrigation_2, irrigation_3, irrigation_4, irrigation_5, irrigation_6, irrigation_7, irrigation_8]
+  - platform: gpio
+    pin: 6
+    id: irrigation_2
+    name: "Irrigation 2"
+    icon: "mdi:watering-can"
+    interlock: *interlock_group
+  - platform: gpio
+    pin: 7
+    id: irrigation_3
+    name: "Irrigation 3"
+    icon: "mdi:watering-can"
+    interlock: *interlock_group
+  - platform: gpio
+    pin: 10
+    id: irrigation_4
+    name: "Irrigation 4"
+    icon: "mdi:watering-can"
+    interlock: *interlock_group
+  - platform: gpio
+    pin: 20
+    id: irrigation_5
+    name: "Irrigation 5"
+    icon: "mdi:watering-can"
+    interlock: *interlock_group
+  - platform: gpio
+    pin: 21
+    id: irrigation_6
+    name: "Irrigation 6"
+    icon: "mdi:watering-can"
+    interlock: *interlock_group
+  - platform: gpio
+    pin: 0
+    id: irrigation_7
+    name: "Irrigation 7"
+    icon: "mdi:watering-can"
+    interlock: *interlock_group
+  - platform: gpio
+    pin: 1
+    id: irrigation_8
+    name: "Irrigation 8"
+    icon: "mdi:watering-can"
+    interlock: *interlock_group
+  - platform: gpio
+    pin: 3
+    id: status
+    name: "Irrigation Status"
+    icon: "mdi:lightbulb"
