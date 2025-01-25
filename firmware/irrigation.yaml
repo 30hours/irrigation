@@ -3,27 +3,30 @@ esphome:
   platform: ESP32
   board: esp32-c3-devkitm-1
 
-# Enable logging
-logger:
-
-# Enable Home Assistant API
-api:
-  encryption:
-    key: "CXBHT8tOZt3Y7fGbe8pLx8k3tyN8ID63/piFv7Updu0="
-
 # WiFi settings
 wifi:
  ap:
    ssid: "Irrigation Controller"
    password: "irrigation"
- fast_connect: false
+
+# Enable logging
+logger:
 
 # Enable web server for status page
 web_server:
   port: 80
-
+  local: true
+  ota: false
+  log: true
+  version: 2
+  
 # Enable captive portal for easy setup
 captive_portal:
+
+# Enable Home Assistant API
+api:
+  encryption:
+    key: "CXBHT8tOZt3Y7fGbe8pLx8k3tyN8ID63/piFv7Updu0="
 
 # Define all switches
 switch:
